@@ -57,14 +57,14 @@ const TaskForm = ({ onSubmit, onCancel, initialData = null }) => {
   };
 
   const priorityColors = {
-    low: "text-green-600",
-    medium: "text-yellow-600",
-    high: "text-red-600",
+    low: "text-green-600 dark:text-green-400",
+    medium: "text-yellow-600 dark:text-yellow-400",
+    high: "text-red-600 dark:text-red-400",
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
-      <h3 className="text-lg font-semibold mb-4">
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 transition-colors">
+      <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
         {initialData ? "Edit Task" : "Add New Task"}
       </h3>
 
@@ -72,7 +72,7 @@ const TaskForm = ({ onSubmit, onCancel, initialData = null }) => {
         <div>
           <label
             htmlFor="title"
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
           >
             Task Title *
           </label>
@@ -82,18 +82,22 @@ const TaskForm = ({ onSubmit, onCancel, initialData = null }) => {
             type="text"
             value={formData.title}
             onChange={handleChange}
-            className={`input-field ${errors.title ? "border-red-500" : ""}`}
+            className={`input-field ${
+              errors.title ? "border-red-500 dark:border-red-500" : ""
+            }`}
             placeholder="Enter task title"
           />
           {errors.title && (
-            <p className="mt-1 text-sm text-red-600">{errors.title}</p>
+            <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+              {errors.title}
+            </p>
           )}
         </div>
 
         <div>
           <label
             htmlFor="description"
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
           >
             Description
           </label>
@@ -112,7 +116,7 @@ const TaskForm = ({ onSubmit, onCancel, initialData = null }) => {
           <div>
             <label
               htmlFor="priority"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
             >
               Priority
             </label>
@@ -132,7 +136,7 @@ const TaskForm = ({ onSubmit, onCancel, initialData = null }) => {
           <div>
             <label
               htmlFor="dueDate"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
             >
               Due Date
             </label>
@@ -148,8 +152,10 @@ const TaskForm = ({ onSubmit, onCancel, initialData = null }) => {
         </div>
 
         {errors.submit && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-3">
-            <p className="text-sm text-red-600">{errors.submit}</p>
+          <div className="bg-red-50 dark:bg-red-900/50 border border-red-200 dark:border-red-800 rounded-md p-3">
+            <p className="text-sm text-red-600 dark:text-red-400">
+              {errors.submit}
+            </p>
           </div>
         )}
 

@@ -17,9 +17,10 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
 
   const getPriorityColor = (priority) => {
     const colors = {
-      low: "bg-green-100 text-green-800",
-      medium: "bg-yellow-100 text-yellow-800",
-      high: "bg-red-100 text-red-800",
+      low: "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300",
+      medium:
+        "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300",
+      high: "bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300",
     };
     return colors[priority] || colors.medium;
   };
@@ -33,7 +34,7 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
 
   return (
     <div
-      className={`bg-white rounded-lg shadow-sm border p-4 transition-all duration-200 hover:shadow-md ${
+      className={`bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 transition-all duration-200 hover:shadow-md dark:hover:shadow-lg ${
         task.completed ? "opacity-75" : ""
       }`}
     >
@@ -44,8 +45,8 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
             disabled={isCompleting}
             className={`mt-1 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
               task.completed
-                ? "bg-green-500 border-green-500"
-                : "border-gray-300 hover:border-green-500"
+                ? "bg-green-500 border-green-500 dark:bg-green-600 dark:border-green-600"
+                : "border-gray-300 dark:border-gray-600 hover:border-green-500 dark:hover:border-green-500"
             } ${isCompleting ? "opacity-50" : ""}`}
           >
             {task.completed && (
@@ -66,7 +67,9 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
           <div className="flex-1">
             <h3
               className={`font-medium ${
-                task.completed ? "line-through text-gray-500" : "text-gray-900"
+                task.completed
+                  ? "line-through text-gray-500 dark:text-gray-400"
+                  : "text-gray-900 dark:text-white"
               }`}
             >
               {task.title}
@@ -75,7 +78,9 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
             {task.description && (
               <p
                 className={`mt-1 text-sm ${
-                  task.completed ? "text-gray-400" : "text-gray-600"
+                  task.completed
+                    ? "text-gray-400 dark:text-gray-500"
+                    : "text-gray-600 dark:text-gray-300"
                 }`}
               >
                 {task.description}
@@ -95,10 +100,10 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
                 <span
                   className={`text-xs ${
                     isOverdue(task.dueDate)
-                      ? "text-red-600 font-medium"
+                      ? "text-red-600 dark:text-red-400 font-medium"
                       : task.completed
-                      ? "text-gray-400"
-                      : "text-gray-500"
+                      ? "text-gray-400 dark:text-gray-500"
+                      : "text-gray-500 dark:text-gray-400"
                   }`}
                 >
                   Due: {formatDate(task.dueDate)}
@@ -112,7 +117,7 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
         <div className="flex items-center space-x-2 ml-4">
           <button
             onClick={() => onUpdate(task._id, "edit")}
-            className="text-gray-400 hover:text-blue-500 transition-colors"
+            className="text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
             title="Edit task"
           >
             <svg
@@ -132,7 +137,7 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
 
           <button
             onClick={() => onDelete(task._id)}
-            className="text-gray-400 hover:text-red-500 transition-colors"
+            className="text-gray-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition-colors"
             title="Delete task"
           >
             <svg
