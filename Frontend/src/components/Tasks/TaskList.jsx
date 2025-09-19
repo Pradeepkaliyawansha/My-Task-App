@@ -21,7 +21,7 @@ const TaskList = () => {
       const response = await taskAPI.getTasks();
       setTasks(response.data);
       setError("");
-    } catch (error) {
+    } catch {
       setError("Failed to fetch tasks");
     } finally {
       setLoading(false);
@@ -33,7 +33,7 @@ const TaskList = () => {
       const response = await taskAPI.createTask(taskData);
       setTasks((prev) => [response.data, ...prev]);
       setShowForm(false);
-    } catch (error) {
+    } catch {
       throw new Error("Failed to create task");
     }
   };
@@ -51,7 +51,7 @@ const TaskList = () => {
       setTasks((prev) =>
         prev.map((task) => (task._id === taskId ? response.data : task))
       );
-    } catch (error) {
+    } catch {
       setError("Failed to update task");
     }
   };
@@ -66,7 +66,7 @@ const TaskList = () => {
       );
       setEditingTask(null);
       setShowForm(false);
-    } catch (error) {
+    } catch {
       throw new Error("Failed to update task");
     }
   };
@@ -76,7 +76,7 @@ const TaskList = () => {
       try {
         await taskAPI.deleteTask(taskId);
         setTasks((prev) => prev.filter((task) => task._id !== taskId));
-      } catch (error) {
+      } catch {
         setError("Failed to delete task");
       }
     }

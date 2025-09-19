@@ -50,7 +50,7 @@ const TaskForm = ({ onSubmit, onCancel, initialData = null }) => {
     setLoading(true);
     try {
       await onSubmit(formData);
-    } catch (error) {
+    } catch {
       setErrors({ submit: "Failed to save task" });
     }
     setLoading(false);
